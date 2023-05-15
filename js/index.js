@@ -59,7 +59,7 @@ const daily_apiurl = "http://api.openweathermap.org/data/2.5/forecast?units=metr
 async function checkweather(city){
 
     const response = await fetch(apiurl + city +  `&appid=${apikey}`);
-    const response_daily = await fetch(daily_apiurl + city + `&appid=${apikey}`);
+    // const response_daily = await fetch(daily_apiurl + city + `&appid=${apikey}`);
 
     if(response.status==404){
         alert("PLEASE ENTER A VALID CITY: ");
