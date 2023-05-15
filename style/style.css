@@ -1,7 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Bruno+Ace&display=swap');
+
 /* VARIABLES */
 :root{
     --color-text-bw: #1a1b1a;
-    --color-text-wt: #f0f0f0;
+    --color-text-wt: #dad8d8;
+    --font-family: 'Bruno Ace', cursive;
+}    
+
+.underline_AT::after{
+    content: "";
+    display: block;
+    background: var(--color-text-wt);
+    height: 2px;
+}
+
+.underline::after{
+    content: "";
+    display: block;
+    background: var(--color-text-wt);
+    height: 2px;
+    width: 90%;
+    transform: scaleX(0);
+    transition: transform ease-in-out 0.2s;
+}
+.underline:hover::after{
+    transform: scaleX(1);
 }
 
 
@@ -12,19 +35,40 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+}    
 
 /* CONTAINER STARTED */
 .container{
     color: var(--color-text-wt);
-    background: #000;
     height: 100vh;
+    width: 100vw;
 
     display: flex;
     justify-content: space-around;
     align-items: center;
-}
+    /* flex-direction: column; */
+
+    background: url(/assets/background_img.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-clip: content-box;
+    
+    font-family: var(--font-family);
+
+}    
+.container .heading{
+    position: absolute;
+    top: 2%;
+}    
+.container .details .resources a{
+    color: var(--color-text-wt);
+    text-decoration: none;
+}    
+
 /* CONTAINER ENDS */
+
+
 
 
 /* MAIN SECTION STARTED */
@@ -32,35 +76,79 @@
     display: grid;
     place-items: center;
 
-    color: var(--color-text-bw);
+    color: var(--color-text-wt);
     height: 80vh;
-    background: var(--color-text-wt);
+    background: rgba(156, 155, 155, 0.26);
+    border-radius: 0.6rem;
     width: 30vw;
 }
-.main_section .input{
-
+.main_section .input_area{
+    position: relative;
 }
+
+.main_section .input_area input{
+    font-family: var(--font-family);
+    background: transparent;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid var(--color-text-bw);
+    font-size: 1rem;
+} 
+
+.main_section .input_area button{
+    font-family: var(--font-family);
+    position: absolute;
+    left: 80%;
+    background: transparent;
+    outline: none;
+    border: none;
+    font-size: 1rem;
+}
+.main_section .input_area button:hover{
+    cursor: pointer;
+
+    width: 4rem;
+
+    background-color: rgba(245, 245, 243, 0.438);
+    border-radius: 0.2rem;
+}
+
+
 .main_section .sub_section{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     flex-direction: column;
 
-    margin-top: -9rem;
+    margin-top: -10rem;
     width: 100%;
     /* background: #000000; */
     height: 50vh;
 }
+.main_section .sub_section .weather_condition img{
+    width: 3rem;
+}
+.main_section .sub_section .humidity img{
+    width: 2rem;
+}
+.main_section .sub_section .wind_speed img{
+    width: 2rem;
+}
 .main_section .sub_section .city{
-    font-size: 4rem;
+    font-size: 3rem;
     display: grid;
     place-items: center;
+}
+.main_section .sub_section .temp{
+    font-size: 4.4rem;
 }
 .main_section .sub_section .weather_condition{
     display: flex;
     align-items: center;
     justify-content: space-around;
-    width: 50%;
+    width: 80%;
+    font-size: 1.3rem;
+    font-weight: bold;
 }
 .main_section .sub_section .humidity{
     display: flex;
@@ -73,16 +161,29 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    width: 50%;
+    width: 90%;
 
 }
 
+.main_section .sub_section .date_time .mac_time{
+    position: relative;
+    width: 100%;
+}
 
-
+.main_section .sub_section .date_time .mac_time #time{
+    position: absolute;
+    bottom: -190%;
+} 
+/* 
+.main_section .sub_section .date_time .mac_time #date{
+    position: relative;
+    bottom: -190%;
+    left: -48%;
+} */
 
 /* SIDE SECTION STARTED */
 .side_section{
-
+    color: var(--color-text-wt);
 }
 .side_section .tiles{
     

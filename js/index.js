@@ -158,7 +158,7 @@ async function checkweather(city){
 searchbtn.addEventListener("click", ()=> {
     checkweather(searchbox.value);
 })
-searchbox.addEventListener("ente")
+// searchbox.addEventListener("ente")
 
 currentTime();
 currentDate();
