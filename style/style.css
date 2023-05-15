@@ -208,16 +208,27 @@
 @media screen and  (max-width:500px) {
     .container{
         flex-direction: column;
+        background-repeat: repeat;
+        /* background-size: contain; */
+        height: 300%;
     }
     .main_section{
         width: 90vw;
-        height: 100vh;
-        margin-top: 10rem;
-        background: #000;
+        height: 70vh;
+        margin-top: 4rem;
+        /* background: #000; */
     }
     .container .details {
+        display: grid;
+        place-items: center;
+        height: 26vh;
+        width: 100%;
+        background: #4b4b65d2;
         position: absolute;
-        bottom: 0;
+        bottom: -83%;
+    }
+    .container .details article{
+        width: 90vw;
     }
 }
 
