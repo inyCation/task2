@@ -86,6 +86,7 @@
 }
 .main_section .input_area{
     position: relative;
+    z-index: 10;
 }
 
 .main_section .input_area input{
@@ -219,20 +220,24 @@
         /* background: #000; */
     }
     .container .details {
-        display: grid;
-        place-items: center;
+        display: none;
+        /* place-items: center;
         height: 26vh;
         width: 100%;
         background: #4b4b65d2;
         position: absolute;
-        bottom: -83%;
+        bottom: -83%; */
+
     }
-    .container .details article{
+    /* .container .details article{
         width: 90vw;
-    }
+    } */
     .side_section .tiles .tile{
         width: 100vw;
         font-size: 0.8rem;
+    }
+    .main_section .sub_section{
+        margin-top: -6rem;
     }
 }
 
