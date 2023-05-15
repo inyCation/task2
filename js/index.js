@@ -28,6 +28,7 @@ function currentTime() {
 var currentDate;
 var day;
 var month;
+
 function currentDate(){
     let date = new Date(); 
     day = date.getDate();
@@ -53,10 +54,11 @@ const apiurl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q="
 const searchbox = document.querySelector(".input_area input");
 const searchbtn = document.querySelector(".input_area button");
 
-const daily_apiurl = "http://api.openweathermap.org/data/2.5/forecast?units=metric&q=";
+const daily_apiurl = "https://api.openweathermap.org/data/2.5/forecast?units=metric&q=";
 
 async function checkDaily(city){
     const response_daily = await fetch(daily_apiurl + city + `&appid=${apikey}`);
+    
     if(response_daily.status==404){
         alert("PLEASE ENTER A VALID CITY: ");
     }
