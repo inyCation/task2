@@ -55,11 +55,62 @@ const searchbtn = document.querySelector(".input_area button");
 
 const daily_apiurl = "http://api.openweathermap.org/data/2.5/forecast?units=metric&q=";
 
+async function checkDaily(city){
+    const response_daily = await fetch(daily_apiurl + city + `&appid=${apikey}`);
+    if(response_daily.status==404){
+        alert("PLEASE ENTER A VALID CITY: ");
+    }
+    else{
+        let daily_data = await response_daily.json();
+        
+        // console.log(daily_data.city.name);
+        
+        document.querySelector(".temp-1").innerHTML = Math.round(daily_data.list[1].main.temp) +"°C";
+        
+        document.querySelector(".humidity-1").innerHTML = daily_data.list[1].main.humidity + "%";
+        
+        document.querySelector(".weather_detail-1").innerHTML = daily_data.list[1].weather[0].main;
+        
+        /* second */
+        
+        document.querySelector(".temp-2").innerHTML = Math.round(daily_data.list[2].main.temp) +"°C";
+        
+        document.querySelector(".humidity-2").innerHTML = daily_data.list[2].main.humidity + "%";
+        
+        document.querySelector(".weather_detail-2").innerHTML = daily_data.list[2].weather[0].main;
+        
+        /* thrid */
+        
+        document.querySelector(".temp-3").innerHTML = Math.round(daily_data.list[3].main.temp) +"°C";
+        
+        document.querySelector(".humidity-3").innerHTML = daily_data.list[3].main.humidity + "%";
+        
+        document.querySelector(".weather_detail-3").innerHTML = daily_data.list[3].weather[0].main;
+        
+        /* four */
+        
+        document.querySelector(".temp-4").innerHTML = Math.round(daily_data.list[4].main.temp) +"°C";
+        
+        document.querySelector(".humidity-4").innerHTML = daily_data.list[4].main.humidity + "%";
+        
+        document.querySelector(".weather_detail-4").innerHTML = daily_data.list[4].weather[0].main;
+        
+        /* five */
+        
+        document.querySelector(".temp-5").innerHTML = Math.round(daily_data.list[5].main.temp) +"°C";
+        
+        document.querySelector(".humidity-5").innerHTML = daily_data.list[5].main.humidity + "%";
+        
+        document.querySelector(".weather_detail-5").innerHTML = daily_data.list[5].weather[0].main;
+
+    }
+}
+
+
 
 async function checkweather(city){
 
     const response = await fetch(apiurl + city +  `&appid=${apikey}`);
-    const response_daily = await fetch(daily_apiurl + city + `&appid=${apikey}`);
 
     if(response.status==404){
         alert("PLEASE ENTER A VALID CITY: ");
@@ -82,48 +133,6 @@ async function checkweather(city){
         
         document.querySelector(".wind_speed_details").innerHTML = data.wind.speed+ " km/h";
         
-        let daily_data = await response_daily.json();
-        
-        // console.log(daily_data.city.name);
-
-        document.querySelector(".temp-1").innerHTML = Math.round(daily_data.list[1].main.temp) +"°C";
-
-        document.querySelector(".humidity-1").innerHTML = daily_data.list[1].main.humidity + "%";
-
-        document.querySelector(".weather_detail-1").innerHTML = daily_data.list[1].weather[0].main;
-
-        /* second */
-
-        document.querySelector(".temp-2").innerHTML = Math.round(daily_data.list[2].main.temp) +"°C";
-
-        document.querySelector(".humidity-2").innerHTML = daily_data.list[2].main.humidity + "%";
-
-        document.querySelector(".weather_detail-2").innerHTML = daily_data.list[2].weather[0].main;
-
-        /* thrid */
-
-        document.querySelector(".temp-3").innerHTML = Math.round(daily_data.list[3].main.temp) +"°C";
-
-        document.querySelector(".humidity-3").innerHTML = daily_data.list[3].main.humidity + "%";
-
-        document.querySelector(".weather_detail-3").innerHTML = daily_data.list[3].weather[0].main;
-
-        /* four */
-
-        document.querySelector(".temp-4").innerHTML = Math.round(daily_data.list[4].main.temp) +"°C";
-
-        document.querySelector(".humidity-4").innerHTML = daily_data.list[4].main.humidity + "%";
-
-        document.querySelector(".weather_detail-4").innerHTML = daily_data.list[4].weather[0].main;
-
-        /* five */
-
-        document.querySelector(".temp-5").innerHTML = Math.round(daily_data.list[5].main.temp) +"°C";
-
-        document.querySelector(".humidity-5").innerHTML = daily_data.list[5].main.humidity + "%";
-
-        document.querySelector(".weather_detail-5").innerHTML = daily_data.list[5].weather[0].main;
-
 
 
 
@@ -151,12 +160,15 @@ async function checkweather(city){
         // if(data.weather[0].main=="Snow"){
         //     weathericon.innerHTML = "cloudy_snowing";
         // }
-    }
-    
+    }    
 }
+
+
+
 
 searchbtn.addEventListener("click", ()=> {
     checkweather(searchbox.value);
+    checkDaily(searchbox.value);
 })
 // searchbox.addEventListener("ente")
 
