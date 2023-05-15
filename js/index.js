@@ -57,16 +57,15 @@ const daily_apiurl = "http://api.openweathermap.org/data/2.5/forecast?units=metr
 
 
 async function checkweather(city){
-    
+
     const response = await fetch(apiurl + city +  `&appid=${apikey}`);
     const response_daily = await fetch(daily_apiurl + city + `&appid=${apikey}`);
-    let data = await response.json();
-    let daily_data = await response_daily.json();
 
     if(response.status==404){
         alert("PLEASE ENTER A VALID CITY: ");
     }
     else{
+        let data = await response.json();
         
         
         document.querySelector(".city").innerHTML = data.name;
@@ -83,8 +82,9 @@ async function checkweather(city){
         
         document.querySelector(".wind_speed_details").innerHTML = data.wind.speed+ " km/h";
         
+        let daily_data = await response_daily.json();
         
-        console.log(daily_data.city.name);
+        // console.log(daily_data.city.name);
 
         document.querySelector(".temp-1").innerHTML = Math.round(daily_data.list[1].main.temp) +"°C";
 
