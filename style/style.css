@@ -230,5 +230,9 @@
     .container .details article{
         width: 90vw;
     }
+    .side_section .tiles .tile{
+        width: 100vw;
+        font-size: 0.8rem;
+    }
 }
 
