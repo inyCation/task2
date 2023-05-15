@@ -46,7 +46,6 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    /* flex-direction: column; */
 
     background-image: url(../assets/background_img.jpg);
     background-position: center;
@@ -66,9 +65,12 @@
     text-decoration: none;
 }    
 
+.container .details article{
+    position: relative;
+    margin-bottom: 2rem;
+    width: 20vw;
+}
 /* CONTAINER ENDS */
-
-
 
 
 /* MAIN SECTION STARTED */
@@ -202,3 +204,20 @@
     border: 2px solid var(--color-text-wt);
     border-radius: 0.2rem;
 }
+
+@media screen and  (max-width:500px) {
+    .container{
+        flex-direction: column;
+    }
+    .main_section{
+        width: 90vw;
+        height: 100vh;
+        margin-top: 10rem;
+        background: #000;
+    }
+    .container .details {
+        position: absolute;
+        bottom: 0;
+    }
+}
+

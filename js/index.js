@@ -17,102 +17,43 @@ function currentTime() {
     mm = (mm < 10) ? "0" + mm : mm;
     ss = (ss < 10) ? "0" + ss : ss;
       
-    let time = hh + ":" + mm + ":" + ss + " " + session;
+    document.getElementById("time").innerText = hh + ":" + mm + ":" + ss + " " + session;
 
-    document.getElementById("time").innerText = time; 
-    
     let t = setTimeout(()=>{
         currentTime() 
     }, 1000);
 }
-var currentDate;
-var day;
-var month;
 
-function currentDate(){
-    let date = new Date(); 
-    day = date.getDate();
+function currentDate() {
+    const date = new Date();
+    const day = date.getDate();
+    const month = date.toLocaleString('default', { month: 'short' });
+    const year = date.getFullYear();
     
-    month = date.toLocaleString('default', { month: 'short' });
+    document.getElementById("date").innerText = `${day}-${month}-${year}`;
     
-    let year = date.getFullYear();
+    const outputElements = document.getElementsByClassName('date');
     
-    currentDate = `${day}-${month}-${year}`;
-    document.getElementById("date").innerText = currentDate; 
-
-    document.querySelector("#date-1").innerHTML =  (day+1+" "+month);
-    document.querySelector("#date-2").innerHTML =  (day+2+" "+month);
-    document.querySelector("#date-3").innerHTML =  (day+3+" "+month);
-    document.querySelector("#date-4").innerHTML =  (day+4+" "+month);
-    document.querySelector("#date-5").innerHTML =  (day+5+" "+month);
-
-
+    const currentDateObj = new Date();
+    for (let i = 0; i < outputElements.length; i++) {
+      const nextDate = new Date();
+      nextDate.setDate(currentDateObj.getDate() + i + 1);
+      
+      outputElements[i].innerHTML = nextDate.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+    }
 }
-
-const apikey = "981aa4122d03c916998831ee05ed81ca";
+  
 const apiurl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+const daily_apiurl = "https://api.openweathermap.org/data/2.5/forecast?units=metric&q=";
+const apikey = "981aa4122d03c916998831ee05ed81ca";
 const searchbox = document.querySelector(".input_area input");
 const searchbtn = document.querySelector(".input_area button");
 
-const daily_apiurl = "https://api.openweathermap.org/data/2.5/forecast?units=metric&q=";
-
-async function checkDaily(city){
-    const response_daily = await fetch(daily_apiurl + city + `&appid=${apikey}`);
-    
-    if(response_daily.status==404){
-        alert("PLEASE ENTER A VALID CITY: ");
-    }
-    else{
-        let daily_data = await response_daily.json();
-        
-        // console.log(daily_data.city.name);
-        
-        document.querySelector(".temp-1").innerHTML = Math.round(daily_data.list[1].main.temp) +"°C";
-        
-        document.querySelector(".humidity-1").innerHTML = daily_data.list[1].main.humidity + "%";
-        
-        document.querySelector(".weather_detail-1").innerHTML = daily_data.list[1].weather[0].main;
-        
-        /* second */
-        
-        document.querySelector(".temp-2").innerHTML = Math.round(daily_data.list[2].main.temp) +"°C";
-        
-        document.querySelector(".humidity-2").innerHTML = daily_data.list[2].main.humidity + "%";
-        
-        document.querySelector(".weather_detail-2").innerHTML = daily_data.list[2].weather[0].main;
-        
-        /* thrid */
-        
-        document.querySelector(".temp-3").innerHTML = Math.round(daily_data.list[3].main.temp) +"°C";
-        
-        document.querySelector(".humidity-3").innerHTML = daily_data.list[3].main.humidity + "%";
-        
-        document.querySelector(".weather_detail-3").innerHTML = daily_data.list[3].weather[0].main;
-        
-        /* four */
-        
-        document.querySelector(".temp-4").innerHTML = Math.round(daily_data.list[4].main.temp) +"°C";
-        
-        document.querySelector(".humidity-4").innerHTML = daily_data.list[4].main.humidity + "%";
-        
-        document.querySelector(".weather_detail-4").innerHTML = daily_data.list[4].weather[0].main;
-        
-        /* five */
-        
-        document.querySelector(".temp-5").innerHTML = Math.round(daily_data.list[5].main.temp) +"°C";
-        
-        document.querySelector(".humidity-5").innerHTML = daily_data.list[5].main.humidity + "%";
-        
-        document.querySelector(".weather_detail-5").innerHTML = daily_data.list[5].weather[0].main;
-
-    }
-}
-
-
 
 async function checkweather(city){
-
+    
     const response = await fetch(apiurl + city +  `&appid=${apikey}`);
+    const response_daily = await fetch(daily_apiurl + city + `&appid=${apikey}`);
 
     if(response.status==404){
         alert("PLEASE ENTER A VALID CITY: ");
@@ -120,59 +61,38 @@ async function checkweather(city){
     else{
         let data = await response.json();
         
-        
         document.querySelector(".city").innerHTML = data.name;
         // document.querySelector(".city_lc").innerHTML = "Local Time ("+data.name+")";
-
-
         document.querySelector(".temp").innerHTML = Math.round(data.main.temp) +"°C";
-        
-
         document.querySelector(".weather_detail").innerHTML = "(It's "+data.weather[0].description +")";
         document.querySelector(".humidity-detail").innerHTML = data.main.humidity + "%";
-        
         document.querySelector(".wind_speed_details").innerHTML = data.wind.speed+ " km/h";
-        
         document.querySelector(".wind_speed_details").innerHTML = data.wind.speed+ " km/h";
-        
-
-
-
-
-
-
-
-        // const weathericon = document.querySelector(".weather-icon");
     
-        // if(data.weather[0].main=="Rain"){
-        //     weathericon.innerHTML = "rainy";
-        // }
-        // if(data.weather[0].main=="Clear"){
-        //     weathericon.innerHTML = "clear_day";
-        // }
-        // if(data.weather[0].main=="Clouds"){
-        //     weathericon.innerHTML = "cloud";
-        // }
-        // if(data.weather[0].main=="Thunderstorm"){
-        //     weathericon.innerHTML = "thunderstorm";
-        // }
-        // if(data.weather[0].main=="Drizzle"){
-        //     weathericon.innerHTML = "foggy";
-        // }
-        // if(data.weather[0].main=="Snow"){
-        //     weathericon.innerHTML = "cloudy_snowing";
-        // }
+        let daily_data = await response_daily.json();
+
+        let temp = document.getElementsByClassName('temp'); 
+        let humidity = document.getElementsByClassName('humidity'); 
+        let weather_detail = document.getElementsByClassName('weather_detail'); 
+        for (let i = 1; i <= 5; i++) {
+            let index = i;
+
+            temp[i].innerHTML = Math.round(daily_data.list[index].main.temp) + "°C";
+            humidity[i].innerHTML = daily_data.list[index].main.humidity + "%";
+            weather_detail[i].innerHTML = daily_data.list[index].weather[0].main;
+        }
     }    
 }
-
-
-
-
 searchbtn.addEventListener("click", ()=> {
     checkweather(searchbox.value);
     checkDaily(searchbox.value);
 })
-// searchbox.addEventListener("ente")
+searchbox.addEventListener("keyup", ()=>{
+    if (event.keyCode === 13) {
+        checkweather(searchbox.value);
+        checkDaily(searchbox.value);
+    }
+})
 
 currentTime();
 currentDate();
