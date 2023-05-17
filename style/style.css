@@ -150,7 +150,7 @@
 .main_section .sub_section .wind_speed img{
     width: 2rem;
 }
-.humidity_img{
+.humidity_area img{
     width: 2.8rem;
     filter: invert(1);
     mix-blend-mode: color-dodge;
