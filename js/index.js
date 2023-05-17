@@ -93,7 +93,7 @@ searchbtn.addEventListener("click", ()=> {
     checkweather(searchbox.value);
     checkDaily(searchbox.value);
 })
-searchbtn.addEventListener("keyup", (event)=>{
+searchbox.addEventListener("keyup", (event)=>{
     if (event.keyCode === 13) {
         checkweather(searchbox.value);
         checkDaily(searchbox.value);

@@ -145,7 +145,8 @@
 }
 .main_section .sub_section .humidity img{
     width: 3rem;
-    mix-blend-mode: color-burn;
+    mix-blend-mode: color-dodge;
+    filter: invert(1);
 }
 .main_section .sub_section .wind_speed img{
     width: 2rem;
