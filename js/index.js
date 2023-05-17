@@ -66,7 +66,7 @@ async function checkweather(city){
         document.querySelector(".temp").innerHTML = Math.round(data.main.temp) +"°C";
         document.querySelector(".weather_detail").innerHTML = "(It's "+data.weather[0].description +")";
         document.querySelector(".humidity-detail").innerHTML = data.main.humidity + "%";
-        document.querySelector(".wind_speed_details").innerHTML = data.wind.speed+ " km/h";
+        document.querySelector(".weather_condition img").src = "https://openweathermap.org/img/wn/"+data.weather[0].icon +".png";
         document.querySelector(".wind_speed_details").innerHTML = data.wind.speed+ " km/h";
     
         let daily_data = await response_daily.json();
@@ -74,12 +74,17 @@ async function checkweather(city){
         let temp = document.getElementsByClassName('temp'); 
         let humidity = document.getElementsByClassName('humidity'); 
         let weather_detail = document.getElementsByClassName('weather_detail'); 
+        
+        let weather_condition_img = document.querySelectorAll('.weather_condition img'); 
+       
         for (let i = 1; i <= 5; i++) {
             let index = i;
 
             temp[i].innerHTML = Math.round(daily_data.list[index].main.temp) + "°C";
             humidity[i].innerHTML = daily_data.list[index].main.humidity + "%";
             weather_detail[i].innerHTML = daily_data.list[index].weather[0].main;
+            
+            weather_condition_img[i].src = "https://openweathermap.org/img/wn/" + daily_data.list[i].weather[0].icon + ".png"
         }
     }    
 }

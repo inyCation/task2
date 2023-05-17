@@ -131,6 +131,19 @@
 .main_section .sub_section .weather_condition img{
     width: 3rem;
 }
+.main_section .sub_section .temp img{
+    width: 3rem;
+    mix-blend-mode: color-burn;
+}
+.tile .temp{
+    display: grid;
+    place-items: center;
+
+}
+.tile .temp img{
+    width: 2rem;
+    mix-blend-mode: darken;
+}
 .main_section .sub_section .humidity img{
     width: 2rem;
 }
