@@ -85,7 +85,7 @@ async function checkweather(city){
             weather_detail[i].innerHTML = daily_data.list[index].weather[0].main;
             
             weather_condition_img[i].src = "https://openweathermap.org/img/wn/" + daily_data.list[i].weather[0].icon + ".png"
-        }
+        } 
     }    
 }
 searchbtn.addEventListener("click", ()=> {
